@@ -1,0 +1,50 @@
+:host {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  font-size: 15px;
+}
+
+.title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+time {
+  font-size: 12px;
+  color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
+}
+
+button.delete {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+:host:hover button.delete {
+  color: var(--danger);
+}
+
+button.delete:hover {
+  background: var(--danger-bg);
+  border-color: rgba(197, 40, 61, 0.2);
+}
+
+button.delete:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(197, 40, 61, 0.25);
+}

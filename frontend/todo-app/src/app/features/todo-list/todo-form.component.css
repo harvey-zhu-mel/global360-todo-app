@@ -1,0 +1,53 @@
+:host {
+  display: block;
+}
+
+form {
+  display: flex;
+  gap: 8px;
+}
+
+input[type="text"] {
+  flex: 1;
+  height: 40px;
+  padding: 0 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+input[type="text"]:hover {
+  border-color: var(--border-strong);
+}
+
+input[type="text"]:focus {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-focus);
+}
+
+button[type="submit"] {
+  height: 40px;
+  padding: 0 18px;
+  background: var(--accent-bg);
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+
+button[type="submit"]:hover {
+  background: #d9e8ff;
+}
+
+button[type="submit"]:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+button[type="submit"]:active {
+  transform: scale(0.98);
+}
