@@ -1,0 +1,20 @@
+# Normalize line endings on checkout for cross-OS consistency.
+# Without this, Windows contributors and Linux/macOS contributors disagree on
+# every file and produce noisy diffs.
+
+* text=auto eol=lf
+
+# Explicit binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.zip binary
+*.gz binary
+
+# Windows-only files keep CRLF
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf
