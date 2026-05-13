@@ -1,0 +1,9 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Global360.Todo.Api/Global360.Todo.Api.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Global360.Todo.Api.IntegrationTests/Global360.Todo.Api.IntegrationTests.csproj" />
+    <Project Path="tests/Global360.Todo.Api.UnitTests/Global360.Todo.Api.UnitTests.csproj" />
+  </Folder>
+</Solution>
