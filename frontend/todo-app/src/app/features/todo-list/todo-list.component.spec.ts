@@ -59,11 +59,14 @@ describe('TodoListComponent', () => {
     expect(text).toContain('No tasks yet');
   });
 
-  it('posts to the API and prepends the new todo on add', async () => {
+  it('posts to the API and appends the new todo so the on-add order matches the server insertion order', async () => {
+    // Start from a non-empty list so we can verify position, not just count.
     fixture.detectChanges();
-    httpMock.expectOne(`${baseUrl}/api/todos`).flush([]); // initial GET
+    httpMock.expectOne(`${baseUrl}/api/todos`).flush(todos);
+    await fixture.whenStable();
+    fixture.detectChanges();
 
-    // Submit the form with a new title
+    // Submit the form with a new title.
     const input = fixture.nativeElement.querySelector('input[type="text"]') as HTMLInputElement;
     input.value = 'new task';
     input.dispatchEvent(new Event('input'));
@@ -80,8 +83,12 @@ describe('TodoListComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
     const rows = fixture.nativeElement.querySelectorAll('[data-testid="todo-row"]');
-    expect(rows.length).toBe(1);
-    expect((rows[0] as HTMLElement).textContent).toContain('new task');
+    expect(rows.length).toBe(3);
+    // The new row must be appended at the bottom — matching the server's
+    // insertion order returned by GET /api/todos.
+    expect((rows[0] as HTMLElement).textContent).toContain('first');
+    expect((rows[1] as HTMLElement).textContent).toContain('second');
+    expect((rows[2] as HTMLElement).textContent).toContain('new task');
   });
 
   it('deletes via the API and removes the row on delete', async () => {

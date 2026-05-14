@@ -79,7 +79,10 @@ export class TodoListComponent implements OnInit {
   protected onAdd(title: string): void {
     this.error.set(null);
     this.service.add(title).subscribe({
-      next: (created) => this.todos.update((list) => [created, ...list]),
+      // Append the new item so the local list matches the server's insertion
+      // order (oldest → newest). Prepending here produced a different order
+      // after add vs. after refresh — a small but visible inconsistency.
+      next: (created) => this.todos.update((list) => [...list, created]),
       error: (err) => this.error.set(this.describe(err)),
     });
   }
